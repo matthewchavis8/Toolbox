@@ -7,11 +7,26 @@ if(NOT DEFINED CMAKE_CXX_STANDARD)
 endif()
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-# TODO: add Google Test eventually
-# add_subdirectory(test)
-
-# Test Executable
+# Demo Executable
 add_executable(
   demo
   main.cpp
 )
+
+#  -- Enable Google Test --
+
+include(CTest)
+
+if(BUILD_TESTING)
+  # For MSVC compilers avoid conflict
+  set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+
+  include(FetchContent)
+  FetchContent_Declare(
+    googletest
+    URL https://github.com/google/googletest/archive/refs/tags/v1.14.0.zip
+  )
+  FetchContent_MakeAvailable(googletest)
+
+  add_subdirectory(test)
+endif()
