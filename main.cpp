@@ -1,7 +1,8 @@
-#include <iostream>
+#include "Toolbox/print.hpp"
 
 int main() {
-  std::cout << ":) Hello" << '\n';
+  println("Hello {}", "Matthew Chavis");
+  println("Hello {}", 500);
 
   return 0;
 }
