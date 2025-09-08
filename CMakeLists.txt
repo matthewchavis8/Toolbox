@@ -6,15 +6,15 @@ if(NOT DEFINED CMAKE_CXX_STANDARD)
 	set(CMAKE_CXX_STANDARD 17)
 endif()
 set(CMAKE_CXX_EXTENSIONS OFF)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 # Demo Executable
 add_executable(
-  demo
+  demo_with_toolbox
   main.cpp
 )
 
 #  -- Enable Google Test --
-
 include(CTest)
 
 if(BUILD_TESTING)
