@@ -1,9 +1,30 @@
+#include "gtest/gtest.h"
 #include <gtest/gtest.h>
+#include <string_view>
+#include "../Toolbox/print.hpp"
 
-// Demonstrate some basic assertions.
-TEST(HelloWorld, BasicAssertions) {
-  // Expect two strings not to be equal.
-  EXPECT_STRNE("hello", "world");
-  // Expect equality.
-  EXPECT_EQ(7 * 6, 42);
+using namespace testing;
+
+TEST(ToolBoxPrint, BasicString) {
+  
+  internal::CaptureStdout();
+
+  print("Hello World!");
+
+  std::string_view output { internal::GetCapturedStdout() };
+  std::string_view expected { "Hello World!" };
+
+  EXPECT_EQ(output, expected);
+}
+
+TEST(ToolBoxPrint, BasicStringNewline) {
+  
+  internal::CaptureStdout();
+
+  println("Hello World!");
+
+  std::string_view output { internal::GetCapturedStdout() };
+  std::string_view expected { "Hello World!\n" };
+
+  EXPECT_EQ(output, expected);
 }
